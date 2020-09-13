@@ -1,14 +1,37 @@
 import 'package:cooking_app/data/data.dart';
+import 'package:cooking_app/model/recipe_object.dart';
 import 'package:cooking_app/view/RecipeD.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 class MealPlan extends StatelessWidget {
-  final int ListIndex;
   final String Sindex;
-  MealPlan({this.ListIndex, this.Sindex});
+  MealPlan({this.Sindex});
+
   @override
   Widget build(BuildContext context) {
+    List<Recipe> Lunch = [];
+    List<Recipe> Breakfast = [];
+    List<Recipe> Diner = [];
+    List<Recipe> FoodList = [];
+    for (int i = 0; i < RecipeData.length; i++) {
+      if (RecipeData[i].category == 'Lunch') {
+        Lunch.add(RecipeData[i]);
+      } else if (RecipeData[i].category == 'Breakfast') {
+        Breakfast.add(RecipeData[i]);
+      } else {
+        Diner.add(RecipeData[i]);
+      }
+    }
+    if (Sindex == 'Lunch') {
+      FoodList = Lunch;
+    } else if (Sindex == 'Breakfast') {
+      FoodList = Breakfast;
+    } else {
+      FoodList = Diner;
+    }
+    ;
     return Container(
       height: 250.0,
       child: Column(
@@ -30,7 +53,6 @@ class MealPlan extends StatelessWidget {
                     fontWeight: FontWeight.w700,
                     fontSize: 15.0,
                     color: Color(0xAA34c47c),
-                    decoration: TextDecoration.underline,
                   ),
                 ),
                 onTap: () {
@@ -46,7 +68,7 @@ class MealPlan extends StatelessWidget {
             height: 200.0,
             child: ListView.builder(
                 physics: BouncingScrollPhysics(),
-                itemCount: RecipeData.length,
+                itemCount: FoodList.length,
                 scrollDirection: Axis.horizontal,
                 itemBuilder: (context, index) {
                   return GestureDetector(
@@ -55,9 +77,9 @@ class MealPlan extends StatelessWidget {
                           context,
                           MaterialPageRoute(
                               builder: (context) => RecipeD(
-                                    RecipeTitle: RecipeData[index].title,
-                                    CookingTime: RecipeData[index].CookingTime,
-                                    ImageLink: RecipeData[index].image,
+                                    RecipeTitle: FoodList[index].title,
+                                    CookingTime: FoodList[index].CookingTime,
+                                    ImageLink: FoodList[index].image,
                                     Index: index,
                                   )));
                     },
@@ -70,7 +92,7 @@ class MealPlan extends StatelessWidget {
                           Container(
                             child: ClipRRect(
                               child: Image(
-                                image: AssetImage(RecipeData[index].image),
+                                image: AssetImage(FoodList[index].image),
                                 fit: BoxFit.cover,
                               ),
                               borderRadius:
@@ -80,7 +102,7 @@ class MealPlan extends StatelessWidget {
                             width: 150.0,
                           ),
                           Text(
-                            RecipeData[index].title,
+                            FoodList[index].title,
                             style: TextStyle(
                                 fontSize: 15.0, fontWeight: FontWeight.w500),
                           )
