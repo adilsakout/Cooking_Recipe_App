@@ -2,6 +2,7 @@ import 'package:cooking_app/model/recipe_object.dart';
 
 List<Recipe> RecipeData = [
   Recipe(
+    Id: 001,
     image: 'images/spicy_beef_&_cauli_rice.jpg',
     category: 'Lunch',
     CookingTime: 24,
@@ -26,6 +27,7 @@ List<Recipe> RecipeData = [
     ],
   ),
   Recipe(
+      Id: 002,
       title: 'Asparagus, eggs & French dressing',
       image: 'images/asparagus_eggs_&_French_dressing.jpg',
       category: 'Breakfast',
@@ -47,6 +49,7 @@ List<Recipe> RecipeData = [
         'Drizzle each plate with 1 tablespoon of dressing (save the rest for another day), season from a height with a pinch of pepper, and dig in.'
       ]),
   Recipe(
+      Id: 003,
       title: 'Sicilian tuna pasta',
       CookingTime: 14,
       category: 'Diner',
@@ -67,6 +70,7 @@ List<Recipe> RecipeData = [
         'Taste, season to perfection with sea salt and black pepper, then dish up. Sprinkle over the crispy capers and the remaining oregano from a height, drizzle with 1 teaspoon of extra virgin olive oil, and tuck in.'
       ]),
   Recipe(
+      Id: 004,
       title: 'Crispy garlicky chicken',
       category: 'Lunch',
       image: 'images/crispy_garlicky_chicken.jpg',
@@ -88,6 +92,7 @@ List<Recipe> RecipeData = [
         'Slice, plate up, season to perfection with sea salt and black pepper, sprinkle with lemon-dressed rocket, and serve with lemon wedges, for squeezing over.'
       ]),
   Recipe(
+      Id: 005,
       title: 'Roasted veggie curry',
       image: 'images/roasted_veggie_curry.jpg',
       category: 'Lunch',

@@ -1,7 +1,7 @@
 import 'package:cooking_app/data/data.dart';
-import 'package:cooking_app/view//mealTime.dart';
 import 'package:cooking_app/view/RecipeD.dart';
 import 'package:cooking_app/view/search_screen.dart';
+import 'package:cooking_app/widget//mealTime.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -70,7 +70,8 @@ class MainHome extends StatelessWidget {
                                 RecipeTitle: RecipeData[index].title,
                                 ImageLink: RecipeData[index].image,
                                 CookingTime: RecipeData[index].CookingTime,
-                                Index: index,
+                                Ingredient: RecipeData[index].ingredient,
+                                Preparation: RecipeData[index].preparation,
                               ),
                             ));
                       },

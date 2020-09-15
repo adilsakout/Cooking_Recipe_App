@@ -1,6 +1,7 @@
 import 'package:cooking_app/data/data.dart';
 import 'package:cooking_app/model/recipe_object.dart';
 import 'package:cooking_app/view/RecipeD.dart';
+import 'package:cooking_app/view/all_recipe.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -57,6 +58,12 @@ class MealPlan extends StatelessWidget {
                 ),
                 onTap: () {
                   //navigate to the detail page
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => AllRecipe(
+                                RecipeCatagory: Sindex,
+                              )));
                 },
               )
             ],
@@ -80,7 +87,8 @@ class MealPlan extends StatelessWidget {
                                     RecipeTitle: FoodList[index].title,
                                     CookingTime: FoodList[index].CookingTime,
                                     ImageLink: FoodList[index].image,
-                                    Index: index,
+                                    Ingredient: FoodList[index].ingredient,
+                                    Preparation: FoodList[index].preparation,
                                   )));
                     },
                     child: Container(
