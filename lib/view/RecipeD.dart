@@ -37,7 +37,7 @@ class _RecipeDState extends State<RecipeD> {
                 fit: BoxFit.cover,
               ),
               Padding(
-                padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 40.0),
+                padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 60.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.end,
@@ -231,7 +231,13 @@ class _RecipeDState extends State<RecipeD> {
                       ),
                     ),
                 childCount: widget.Preparation.length),
-          )
+          ),
+          SliverList(
+              delegate: SliverChildListDelegate([
+            SizedBox(
+              height: 60,
+            )
+          ]))
         ],
       ),
     );

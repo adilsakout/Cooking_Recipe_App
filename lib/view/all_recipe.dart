@@ -40,9 +40,9 @@ class AllRecipe extends StatelessWidget {
               Text(
                 RecipeCatagory,
                 style: TextStyle(
-                  fontSize: 50.0,
-                  fontWeight: FontWeight.w700,
-                ),
+                    fontSize: 50.0,
+                    fontWeight: FontWeight.w700,
+                    color: Color(0xAA34c47c)),
               ),
               Text(
                 'recipe',
@@ -82,18 +82,6 @@ class AllRecipe extends StatelessWidget {
                                   child: Column(
                                     children: [
                                       Container(
-                                        decoration: BoxDecoration(
-                                          boxShadow: [
-                                            BoxShadow(
-                                              color:
-                                                  Colors.grey.withOpacity(0.5),
-                                              spreadRadius: 1,
-                                              blurRadius: 10,
-                                              offset: Offset(0,
-                                                  3), // changes position of shadow
-                                            ),
-                                          ],
-                                        ),
                                         child: ClipRRect(
                                           child: Image(
                                             image: AssetImage(
