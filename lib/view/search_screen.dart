@@ -2,10 +2,12 @@ import 'package:cooking_app/data/data.dart';
 import 'package:cooking_app/model/recipe_object.dart';
 import 'package:flappy_search_bar/flappy_search_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class SearchBarS extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final recipeList = Provider.of(context) ;
     return Scaffold(
       body: SafeArea(
         child: Padding(
@@ -14,7 +16,7 @@ class SearchBarS extends StatelessWidget {
               onSearch: search,
               onItemFound: (Recipe recipe, int index) {
                 return ListTile(
-                  title: Text(RecipeData[index].title),
+                  title: Text(recipeList[index].title),
                 );
               },
             )),

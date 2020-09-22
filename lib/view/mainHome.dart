@@ -1,9 +1,8 @@
-import 'package:cooking_app/data/data.dart';
-import 'package:cooking_app/view/RecipeD.dart';
 import 'package:cooking_app/view/search_screen.dart';
 import 'package:cooking_app/widget//mealTime.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:cooking_app/widget/recipelistview.dart';
 
 class MainHome extends StatelessWidget {
   @override
@@ -56,65 +55,7 @@ class MainHome extends StatelessWidget {
             ),
             Container(
               height: 300.0,
-              child: ListView.builder(
-                  physics: BouncingScrollPhysics(),
-                  scrollDirection: Axis.horizontal,
-                  itemCount: RecipeData.length,
-                  itemBuilder: (context, index) {
-                    return GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => RecipeD(
-                                RecipeTitle: RecipeData[index].title,
-                                ImageLink: RecipeData[index].image,
-                                CookingTime: RecipeData[index].CookingTime,
-                                Ingredient: RecipeData[index].ingredient,
-                                Preparation: RecipeData[index].preparation,
-                              ),
-                            ));
-                      },
-                      child: Container(
-                        margin: EdgeInsets.only(right: 10.0),
-                        height: 250.0,
-                        width: 230.0,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Container(
-                              child: ClipRRect(
-                                child: Image(
-                                  image: AssetImage(RecipeData[index].image),
-                                  fit: BoxFit.cover,
-                                ),
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(20.0)),
-                              ),
-                              height: 200,
-                              width: 230,
-                            ),
-                            Text(
-                              RecipeData[index].title,
-                              style: TextStyle(
-                                fontSize: 25.0,
-                                fontWeight: FontWeight.w700,
-                                color: Colors.black87,
-                              ),
-                            ),
-                            Text(
-                              RecipeData[index].CookingTime.toString() + ' Min',
-                              style: TextStyle(
-                                fontSize: 15.0,
-                                fontWeight: FontWeight.w600,
-                                color: Colors.blueGrey,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    );
-                  }),
+              child: RecipeListViewList(),
             ),
             SizedBox(
               height: 20.0,

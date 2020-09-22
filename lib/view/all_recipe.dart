@@ -2,6 +2,7 @@ import 'package:cooking_app/data/data.dart';
 import 'package:cooking_app/model/recipe_object.dart';
 import 'package:cooking_app/view/RecipeD.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class AllRecipe extends StatelessWidget {
   final String RecipeCatagory;
@@ -9,27 +10,8 @@ class AllRecipe extends StatelessWidget {
   AllRecipe({this.RecipeCatagory, this.RecipeIndex});
   @override
   Widget build(BuildContext context) {
-    List<Recipe> Lunch = [];
-    List<Recipe> Breakfast = [];
-    List<Recipe> Diner = [];
-    List<Recipe> FoodList = [];
-    for (int i = 0; i < RecipeData.length; i++) {
-      if (RecipeData[i].category == 'Lunch') {
-        Lunch.add(RecipeData[i]);
-      } else if (RecipeData[i].category == 'Breakfast') {
-        Breakfast.add(RecipeData[i]);
-      } else {
-        Diner.add(RecipeData[i]);
-      }
-    }
-    if (RecipeCatagory == 'Lunch') {
-      FoodList = Lunch;
-    } else if (RecipeCatagory == 'Breakfast') {
-      FoodList = Breakfast;
-    } else {
-      FoodList = Diner;
-    }
-    ;
+    final recipeList =
+        Provider.of<RecipeData>(context).findCatagory(RecipeCatagory);
     return Scaffold(
       body: SafeArea(
         child: Padding(
@@ -56,24 +38,13 @@ class AllRecipe extends StatelessWidget {
               Expanded(
                 child: GridView.builder(
                     physics: BouncingScrollPhysics(),
-                    itemCount: FoodList.length,
+                    itemCount: recipeList.length,
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 2),
                     itemBuilder: (context, index) => GestureDetector(
                           onTap: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => RecipeD(
-                                          CookingTime:
-                                              FoodList[index].CookingTime,
-                                          RecipeTitle: FoodList[index].title,
-                                          ImageLink: FoodList[index].image,
-                                          Ingredient:
-                                              FoodList[index].ingredient,
-                                          Preparation:
-                                              FoodList[index].preparation,
-                                        )));
+                            Navigator.pushNamed(context, RecipeD.pageRouts,
+                                arguments: RecipeIndex);
                           },
                           child: Container(
                             child: Column(
@@ -85,7 +56,7 @@ class AllRecipe extends StatelessWidget {
                                         child: ClipRRect(
                                           child: Image(
                                             image: AssetImage(
-                                                FoodList[index].image),
+                                                recipeList[index].image),
                                             fit: BoxFit.cover,
                                           ),
                                           borderRadius: BorderRadius.all(
@@ -95,7 +66,7 @@ class AllRecipe extends StatelessWidget {
                                         width: 150.0,
                                       ),
                                       Text(
-                                        FoodList[index].title,
+                                        recipeList[index].title,
                                         style: TextStyle(
                                           fontSize: 15.0,
                                           fontWeight: FontWeight.w500,

@@ -1,20 +1,12 @@
+import 'package:cooking_app/data/data.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:provider/provider.dart';
+import '../model/recipe_object.dart';
 
 class RecipeD extends StatefulWidget {
-  final String RecipeTitle;
-  final int CookingTime;
-  final String ImageLink;
-  final List Ingredient;
-  final List Preparation;
-  RecipeD(
-      {this.CookingTime,
-      this.ImageLink,
-      this.RecipeTitle,
-      this.Ingredient,
-      this.Preparation});
-
+  static const pageRouts = '/DetailScreen' ;
   @override
   _RecipeDState createState() => _RecipeDState();
 }
@@ -24,6 +16,8 @@ Color IconLove = Colors.white;
 class _RecipeDState extends State<RecipeD> {
   @override
   Widget build(BuildContext context) {
+    final recipeId = ModalRoute.of(context).settings.arguments as int;
+    final recipeList = Provider.of<RecipeData>(context).findId(recipeId) ;
     return Scaffold(
       body: CustomScrollView(
         physics: BouncingScrollPhysics(),
@@ -31,7 +25,7 @@ class _RecipeDState extends State<RecipeD> {
           SliverAppBar(
             flexibleSpace: Stack(children: [
               Image.asset(
-                widget.ImageLink,
+                recipeList.image,
                 height: MediaQuery.of(context).size.height,
                 width: MediaQuery.of(context).size.width,
                 fit: BoxFit.cover,
@@ -43,7 +37,7 @@ class _RecipeDState extends State<RecipeD> {
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     Text(
-                      widget.RecipeTitle,
+                      recipeList.title,
                       style: TextStyle(
                           fontSize: 30.0,
                           fontWeight: FontWeight.w700,
@@ -67,7 +61,7 @@ class _RecipeDState extends State<RecipeD> {
                           width: 10.0,
                         ),
                         Text(
-                          '${widget.CookingTime.toString()} Min',
+                          '${recipeList.CookingTime.toString()} Min',
                           style: TextStyle(
                               fontWeight: FontWeight.w700,
                               fontSize: 20.0,
@@ -156,14 +150,14 @@ class _RecipeDState extends State<RecipeD> {
                       color: Colors.white,
                       child: Card(
                         child: Text(
-                          widget.Ingredient[index],
+                          recipeList.ingredient[index],
                           style: TextStyle(
                               fontSize: 15.0, fontWeight: FontWeight.w700),
                         ),
                         elevation: 0.0,
                       ),
                     ),
-                childCount: widget.Ingredient.length),
+                childCount: recipeList.ingredient.length),
           ),
           SliverList(
             delegate: SliverChildListDelegate([
@@ -218,7 +212,7 @@ class _RecipeDState extends State<RecipeD> {
                           Expanded(
                             child: Card(
                               child: Text(
-                                widget.Preparation[index],
+                                recipeList.preparation[index],
                                 textAlign: TextAlign.justify,
                                 style: TextStyle(
                                     fontSize: 15.0,
@@ -230,7 +224,7 @@ class _RecipeDState extends State<RecipeD> {
                         ],
                       ),
                     ),
-                childCount: widget.Preparation.length),
+                childCount: recipeList.preparation.length),
           ),
           SliverList(
               delegate: SliverChildListDelegate([

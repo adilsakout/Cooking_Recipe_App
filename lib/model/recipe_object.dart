@@ -5,7 +5,7 @@ class Recipe {
   List<String> preparation;
   String category;
   int CookingTime;
-  int Id;
+  int id;
   Recipe(
       {this.title,
       this.category,
@@ -13,5 +13,5 @@ class Recipe {
       this.preparation,
       this.CookingTime,
       this.image,
-      this.Id});
+      this.id});
 }
